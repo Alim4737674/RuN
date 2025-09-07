@@ -1,26 +1,21 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CapsuleCollider2D))] // oder BoxCollider2D
 public class Player_Movement : MonoBehaviour
 {
     [Header("Bewegung")]
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 12f;
 
-    [Header("Ground Layer")]
-    [SerializeField] private LayerMask groundLayer; // z.B. "Ground"
-
     private Rigidbody2D rb;
-    private CapsuleCollider2D col; // dein "Controller" für Bodencheck
     private float inputX;
     private bool jumpPressed;
     private bool facingRight = true;
+    private bool grounded;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<CapsuleCollider2D>();
     }
 
     void Update()
@@ -31,54 +26,55 @@ public class Player_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        bool isGrounded = CheckGrounded();
-
         // Bewegung
-#if UNITY_600_0_OR_NEWER
         rb.linearVelocity = new Vector2(inputX * moveSpeed, rb.linearVelocity.y);
-#else
-        rb.linearVelocity = new Vector2(inputX * moveSpeed, rb.linearVelocity.y);
-#endif
 
-        // Springen nur am Boden
-        if (jumpPressed && isGrounded)
+        // Springen
+        if (jumpPressed && grounded)
         {
-#if UNITY_600_0_OR_NEWER
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-#else
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-#endif
+            jumpPressed = false;
         }
-
-        jumpPressed = false;
     }
 
     private void GetInput()
     {
-        inputX = 0f;
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) inputX = -1f;
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) inputX = 1f;
+        inputX = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetButtonDown("Jump"))
             jumpPressed = true;
     }
 
     private void HandleFlip()
     {
-        if (inputX > 0 && !facingRight) Flip();
-        else if (inputX < 0 && facingRight) Flip();
+        if (facingRight && inputX < 0)
+            Flip();
+        else if (!facingRight && inputX > 0)
+            Flip();
     }
 
     private void Flip()
     {
         facingRight = !facingRight;
-        var s = transform.localScale; s.x *= -1f; transform.localScale = s;
+        transform.Rotate(0f, 180f, 0f);
     }
 
-    // === "CharacterController-Style" GroundCheck in 2D ===
-    private bool CheckGrounded()
+    // -------- Ground Methode --------
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        // collider berührt irgendeinen Collider im Ground-Layer?
-        return col.IsTouchingLayers(groundLayer);
+        CheckGround(other, true);
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        CheckGround(other, false);
+    }
+
+    private void CheckGround(Collision2D other, bool state)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            grounded = state;
+        }
     }
 }
