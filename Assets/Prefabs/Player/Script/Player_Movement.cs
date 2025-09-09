@@ -14,6 +14,7 @@ public class Player_Movement : MonoBehaviour
     private bool facingRight = true;
     private bool grounded;
     #endregion
+    // Erstellt/Verknüpft wichtige Variablen und Objekte (z. B. Rigidbody).
 
     #region Awake
     void Awake()
@@ -21,6 +22,7 @@ public class Player_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     #endregion
+    // Wird beim Start ausgeführt, initialisiert Komponenten.
 
     #region Update
     void Update()
@@ -29,6 +31,7 @@ public class Player_Movement : MonoBehaviour
         HandleFlip();
     }
     #endregion
+    // Läuft jeden Frame, verarbeitet Eingaben und Logik.
 
     #region FixedUpdate
     void FixedUpdate()
@@ -44,6 +47,7 @@ public class Player_Movement : MonoBehaviour
         }
     }
     #endregion
+    // Läuft in festen Zeitabständen, für Physik (Bewegung, Sprünge).
 
     #region GetInput
     private void GetInput()
@@ -54,6 +58,7 @@ public class Player_Movement : MonoBehaviour
             jumpPressed = true;
     }
     #endregion
+    // Liest die Tastatureingaben (z. B. Bewegung, Sprung).
 
     #region HandleFlip
     private void HandleFlip()
@@ -64,6 +69,7 @@ public class Player_Movement : MonoBehaviour
             Flip();
     }
     #endregion
+    // Prüft, ob die Figur umgedreht werden muss.
 
     #region Flip
     private void Flip()
@@ -72,6 +78,7 @@ public class Player_Movement : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
     #endregion
+    // Dreht die Spielfigur optisch in die andere Richtung.
 
     #region Ground
     // -------- Ground Methode --------
@@ -101,4 +108,5 @@ public class Player_Movement : MonoBehaviour
     #endregion
 
     #endregion
+    // Prüft, ob der Spieler den Boden berührt (Ground Check).
 }
