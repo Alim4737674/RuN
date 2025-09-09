@@ -16447,6 +16447,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6127317037295879369, guid: 01f16172d69cd1d4585c077d85465b7a, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127317037295879369, guid: 01f16172d69cd1d4585c077d85465b7a, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7780565622992943040, guid: 01f16172d69cd1d4585c077d85465b7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5299997
