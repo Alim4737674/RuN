@@ -9,6 +9,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float jumpForce = 12f;
 
     private Rigidbody2D rb;
+    private Animator animator; // Animator hinzugefügt
     private float inputX;
     private bool jumpPressed;
     private bool facingRight = true;
@@ -20,6 +21,7 @@ public class Player_Movement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>(); // Animator Komponente holen
     }
     #endregion
     // Wird beim Start ausgeführt, initialisiert Komponenten.
@@ -29,6 +31,16 @@ public class Player_Movement : MonoBehaviour
     {
         GetInput();
         HandleFlip();
+
+        // Animationen steuern
+        if (Mathf.Abs(inputX) > 0.1f && grounded)
+        {
+            animator.Play("Player_Run");
+        }
+        else if (grounded)
+        {
+            animator.Play("Player_Idle");
+        }
     }
     #endregion
     // Läuft jeden Frame, verarbeitet Eingaben und Logik.
@@ -80,7 +92,7 @@ public class Player_Movement : MonoBehaviour
     #endregion
     // Dreht die Spielfigur optisch in die andere Richtung.
 
-    #region Ground
+    #region Grounded
     // -------- Ground Methode --------
 
     #region OnCollisionEnter2D
