@@ -16061,6 +16061,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5507550592728299714, guid: c321c891a68c50b4f81da8df11791465, type: 3}
   m_PrefabInstance: {fileID: 2134088737}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2144937747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2144937748}
+  m_Layer: 0
+  m_Name: Hintergrund_Bilder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2144937748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144937747}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.46908, y: -1.4244051, z: -3.4668267}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &664194617017146327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16150,6 +16181,22 @@ PrefabInstance:
     - target: {fileID: 4962748782717899633, guid: 726fdd57343fffe408ddb2d27c6a6866, type: 3}
       propertyPath: offset.z
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233279390190585914, guid: 726fdd57343fffe408ddb2d27c6a6866, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233279390190585914, guid: 726fdd57343fffe408ddb2d27c6a6866, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.6754716
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233279390190585914, guid: 726fdd57343fffe408ddb2d27c6a6866, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.31134853
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233279390190585914, guid: 726fdd57343fffe408ddb2d27c6a6866, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.27401203
       objectReference: {fileID: 0}
     - target: {fileID: 8343581991847929495, guid: 726fdd57343fffe408ddb2d27c6a6866, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16572,3 +16619,4 @@ SceneRoots:
   - {fileID: 1443560396}
   - {fileID: 1534965832294605122}
   - {fileID: 4687465511280289356}
+  - {fileID: 2144937748}
