@@ -99,7 +99,7 @@ public class Player_Movement : MonoBehaviour
     private bool IsGrounded()
     {
         Bounds b = col.bounds; // Collider-Grenzen
-        Vector2 size = new Vector2(b.size.x * 0.80f, b.size.y); // etwas schmaler, reduziert Kantenfehler
+        Vector2 size = new Vector2(b.size.x , b.size.y); // etwas schmaler, reduziert Kantenfehler
         float castDistance = groundCheckExtra; // Tiefe des Checks
 
         // BoxCast nach unten, nur gegen groundLayer
